@@ -1,0 +1,32 @@
+/* Task 5
+Write a java program that reads 10 numbers from the user and prints the first even number in the list.
+ */
+ 
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+ 
+/* Name of the class has to be "Main" only if the class is public. */
+class Ideone
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner keyIn = new Scanner(System.in);
+		int[] array = new int[10];
+ 
+		for(int i=0; i<array.length ; i++)
+		{
+			array[i] = keyIn.nextInt();
+		}
+ 
+		for(int i=0; i<array.length ; i++)
+		{
+			if(array[i]%2 == 0)
+			{
+				System.out.println(array[i]);
+				break;
+			}
+		}
+ 
+	}
+}
