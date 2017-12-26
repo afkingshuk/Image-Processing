@@ -1,7 +1,8 @@
-## program written by Shane Ormonde 7th sept 2013
+## program originated from Shane Ormonde 7th sept 2013
 ## updated on 25th January 2014
-## program re-forked by Kingshuk at 2017 November 20
+## program re-forked by Kingshuk at 2017 December 20
 ## calculates the distance of a red dot in the field of view of the webcam.
+## not used build in PiCamera rather used Logitec Externer WebCam using USB. 
 
 import cv2
 from numpy import *
@@ -10,9 +11,10 @@ import math
 # variables
 loop = 1
 dot_dist = 0
+durottoCam2Laser = 7
 
 cv2.namedWindow("preview")
-vc = cv2.VideoCapture(1)
+vc = cv2.VideoCapture(1) #jodi multiple input camera thake tahole builtin ta 0 hobe and bakigula numerically barbe
 
 if vc.isOpened():  # try to get the first frame
     rval, frame = vc.read()
@@ -48,11 +50,14 @@ if rval == 1:
         tan_theta = math.tan(theta)
 
         if tan_theta > 0:  # bit of error checking
-            obj_dist = int(7 / tan_theta)
+            obj_dist = int(durottoCam2Laser / tan_theta)
 
 
-        print "\033[12;0H" + "the dot is " + str(obj_dist) + "cm  away"
+        print "the dot or wall is " + str(obj_dist) + "cm  away"
         cv2.putText(frame, "the dot is " + str(obj_dist) + "cm  away", (int(x_val), int(y_val - 40)),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 0), 2)
 elif rval == 0:
     print " webcam error "
+   
+## this is for distance measurement for SAUVC 2018
+## https://sauvc.org/#competition
